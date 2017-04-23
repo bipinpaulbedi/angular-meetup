@@ -16,6 +16,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     files: [
+      { pattern: "node_modules/chart.js/dist/Chart.js", included: true, watched: false },
       { pattern: './src/test.ts', watched: false }
     ],
     preprocessors: {
