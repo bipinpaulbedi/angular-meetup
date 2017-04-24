@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { WebWorkerComponent } from './web-worker/web-worker.component';
 import { GraphInfoService } from "app/graph-info.service";
 import { DynamicWebWorkersComponent } from './dynamic-web-workers/dynamic-web-workers.component';
+import { WebWorkerMultiThreadedComponent } from './web-worker-multi-threaded/web-worker-multi-threaded.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WebWorkerComponent,
-    DynamicWebWorkersComponent
+    DynamicWebWorkersComponent,
+    WebWorkerMultiThreadedComponent
   ],
   imports: [
     BrowserModule,

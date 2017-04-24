@@ -1,9 +1,10 @@
 import { Component, OnInit, ComponentFactoryResolver, ViewChild, ReflectiveInjector, ViewContainerRef, Input } from '@angular/core';
 import { WebWorkerComponent } from "app/web-worker/web-worker.component";
+import { WebWorkerMultiThreadedComponent } from "app/web-worker-multi-threaded/web-worker-multi-threaded.component";
 
 @Component({
   selector: 'app-dynamic-web-workers',
-  entryComponents: [WebWorkerComponent],
+  entryComponents: [WebWorkerComponent, WebWorkerMultiThreadedComponent],
   templateUrl: './dynamic-web-workers.component.html',
   styleUrls: ['./dynamic-web-workers.component.css']
 })
