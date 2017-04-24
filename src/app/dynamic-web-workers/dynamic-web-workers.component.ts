@@ -1,10 +1,9 @@
 import { Component, OnInit, ComponentFactoryResolver, ViewChild, ReflectiveInjector, ViewContainerRef, Input } from '@angular/core';
 import { WebWorkerComponent } from "app/web-worker/web-worker.component";
-import { WebWorkerWithBackgroundSupportComponent } from "app/web-worker-with-background-support/web-worker-with-background-support.component";
 
 @Component({
   selector: 'app-dynamic-web-workers',
-  entryComponents: [WebWorkerComponent, WebWorkerWithBackgroundSupportComponent],
+  entryComponents: [WebWorkerComponent],
   templateUrl: './dynamic-web-workers.component.html',
   styleUrls: ['./dynamic-web-workers.component.css']
 })
