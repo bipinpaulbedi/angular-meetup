@@ -14,7 +14,7 @@ export class GraphInfoService {
         _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
       }
     }
-    return _lineChartData;
+    return [_lineChartData];
   }
 
   public randomizeObservable(lineChartData: Array<any>): Observable<any> {

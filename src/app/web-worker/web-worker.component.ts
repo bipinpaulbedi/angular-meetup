@@ -9,6 +9,7 @@ import { Subscription } from "rxjs/Rx";
 })
 export class WebWorkerComponent implements OnInit, OnDestroy {
   private seriesData: Subscription;
+  counter: number = 1;
 
   ngOnDestroy(): void {
     this.seriesData.unsubscribe();
@@ -18,10 +19,7 @@ export class WebWorkerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.seriesData = this._graphInfoService.randomizeObservable(this.lineChartData).subscribe(res => {
-      var index = this.lineChartData.findIndex((el) => el.label === res.label);
-      var clone = this.lineChartData.slice(0);
-      clone[index] = res;
-      this.lineChartData = clone;
+      this.lineChartData = res;
     });
   }
 
@@ -73,4 +71,10 @@ export class WebWorkerComponent implements OnInit, OnDestroy {
     console.log(e);
   }
 
+  public startCounter(e: any): void {
+    console.log('Button Clicked On UI');
+    for (var i = 0; i < 10000; i++) {
+      console.log(this.counter++)
+    }
+  }
 }

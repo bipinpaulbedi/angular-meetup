@@ -1,17 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-const ANGULAR_MEETUP_CHANNEL = "ANGULAR_MEETUP_CHANNEL";
+import { Component, OnInit, ViewChild, Injector, OnDestroy } from '@angular/core';
+import { BaseChartDirective } from "ng2-charts";
+import { Subscription } from "rxjs/Rx";
+import { GraphInfoService } from "app/graph-info.service";
 
 @Component({
   selector: 'app-web-worker-multi-threaded',
   templateUrl: './web-worker-multi-threaded.component.html',
   styleUrls: ['./web-worker-multi-threaded.component.css']
 })
-export class WebWorkerMultiThreadedComponent implements OnInit {
+export class WebWorkerMultiThreadedComponent implements OnInit,OnDestroy {
+  private seriesData: Subscription;
+  counter: number = 1;
+  public worker: Worker;
 
-  constructor() {
+  ngOnDestroy(): void {
+    this.seriesData.unsubscribe();
+  }
+
+  constructor(private _injector: Injector, private _graphInfoService: GraphInfoService) {
+    this.worker = this._injector.get('worker');
   }
 
   ngOnInit() {
+    this.worker.onmessage = (e) => {
+      console.log('Inside UI Thread : data received');
+      console.log(e.data);
+    }
+
+    this.seriesData = this._graphInfoService.randomizeObservable(this.lineChartData).subscribe(res => {
+      this.lineChartData = res;
+    });
   }
 
   // lineChart
@@ -60,5 +78,10 @@ export class WebWorkerMultiThreadedComponent implements OnInit {
 
   public chartHovered(e: any): void {
     console.log(e);
+  }
+
+  public startCounter(e: any): void {
+    console.log('Button Clicked On UI');
+    this.worker.postMessage('startCounter');
   }
 }

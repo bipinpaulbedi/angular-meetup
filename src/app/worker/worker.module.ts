@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BackgroundWorkerComponent } from "app/background-worker/background-worker.component";
-import { platformWorkerAppDynamic } from '@angular/platform-webworker-dynamic';
+import { WorkerAppModule } from '@angular/platform-webworker';
+import { GraphInfoService } from "app/graph-info.service";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    WorkerAppModule
   ],
+  providers: [GraphInfoService],
   declarations: [BackgroundWorkerComponent],
   bootstrap: [BackgroundWorkerComponent]
 })

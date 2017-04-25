@@ -8,7 +8,7 @@ import { WebWorkerComponent } from './web-worker/web-worker.component';
 import { GraphInfoService } from "app/graph-info.service";
 import { DynamicWebWorkersComponent } from './dynamic-web-workers/dynamic-web-workers.component';
 import { WebWorkerMultiThreadedComponent } from './web-worker-multi-threaded/web-worker-multi-threaded.component';
-import { WorkerAppModule } from '@angular/platform-webworker';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { WorkerAppModule } from '@angular/platform-webworker';
     WebWorkerMultiThreadedComponent
   ],
   imports: [
-    WorkerAppModule,
+    BrowserModule,
     FormsModule,
     HttpModule,
     ChartsModule

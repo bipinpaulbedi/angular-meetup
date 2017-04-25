@@ -295,7 +295,6 @@ module.exports = {
     }),
     new AotPlugin({
       "mainPath": "main.ts",
-      "entryModule": "app/app.module#AppModule",
       "hostReplacementPaths": {
         "environments/environment.ts": "environments/environment.ts"
       },
