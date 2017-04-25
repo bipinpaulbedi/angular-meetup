@@ -44,7 +44,5 @@ export class DynamicWebWorkersComponent implements OnInit {
       //}
       this.currentComponent = component;
     });
-
-
   }
 }

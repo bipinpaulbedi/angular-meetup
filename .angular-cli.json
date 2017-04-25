@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "meetup"
+    "name": "meetup",
+    "ejected": true
   },
   "apps": [
     {
@@ -21,7 +22,9 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": ["../node_modules/chart.js/dist/chart.js"],
+      "scripts": [
+        "../node_modules/chart.js/dist/chart.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -52,6 +55,7 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {
+    }
   }
 }

@@ -29,7 +29,7 @@ export class AppComponent {
     }
   };
 
-    public generateComponentMutiThreaded(): void {
+  public generateComponentMutiThreaded(): void {
     if (this.componentData == null) {
       this.componentData = []
     }
