@@ -12,6 +12,7 @@ export class WebWorkerMultiThreadedComponent implements OnInit,OnDestroy {
   private seriesData: Subscription;
   counter: number = 1;
   public worker: Worker;
+  objectValue: string = '';
 
   ngOnDestroy(): void {
     this.seriesData.unsubscribe();
@@ -24,6 +25,7 @@ export class WebWorkerMultiThreadedComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.worker.onmessage = (e) => {
       console.log('Inside UI Thread : data received');
+      this.objectValue = JSON.stringify(e.data);
       console.log(e.data);
     }
 
