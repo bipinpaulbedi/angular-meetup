@@ -49,6 +49,9 @@ module.exports = {
     ],
     "webworker": [
       "./src/workerLoader.ts"
+    ],
+    "serviceWorker": [
+      "./src/serviceWorker.ts"
     ]
   },
   "output": {
@@ -219,7 +222,7 @@ module.exports = {
       "cache": true,
       "showErrors": true,
       "chunks": "all",
-      "excludeChunks": ["webworker"],
+      "excludeChunks": ["webworker", "serviceWorker"],
       "title": "Webpack App",
       "xhtml": true,
       "chunksSortMode": function sort(left, right) {

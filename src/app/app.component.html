@@ -2,12 +2,14 @@
   {{title}}
 </h1>
 <p>
-  Number of graphs : <input type="text" [(ngModel)]='graphs' /> | Multiple Web Workers : <input type="checkbox" [(ngModel)]='generateDistinct' />
+  Number of graphs : <input type="text" [(ngModel)]='graphs' /> | Multiple Web Workers : <input type="checkbox" [(ngModel)]='generateDistinct'
+  />
 </p>
 <p>
   <button (click)="generateComponent()">Generate Graph</button>
   <button (click)="generateComponentMutiThreaded()">Generate Graph (w) Threads</button>
-   <button (click)="terminateWorkers()">Terminate Workers</button>
+  <button (click)="terminateWorkers()">Terminate Workers</button>
+  <button (click)="sendPing()">Ping</button>
 </p>
 <div style="float:left">
   <app-dynamic-web-workers [componentData]="componentData"></app-dynamic-web-workers>

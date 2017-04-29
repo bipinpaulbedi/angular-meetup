@@ -17,6 +17,10 @@ export class AppComponent {
   constructor() {
     this.backGroundWorker = new Worker('webworker.bundle.js');
     this.backgroudWorkers.push(this.backGroundWorker);
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('serviceWorker.bundle.js');
+    }
   }
 
   public generateComponent(): void {
@@ -59,5 +63,25 @@ export class AppComponent {
     let newWorker: Worker = new Worker('webworker.bundle.js')
     this.backgroudWorkers.push(newWorker);
     return newWorker;
+  }
+
+  public sendPing() {
+    this.sendMessage('ping').then((reply) => {
+      console.log(reply);
+    }).catch((er) => { console.log(er); })
+  }
+
+  private sendMessage(message) {
+    return new Promise(function (resolve, reject) {
+      var messageChannel = new MessageChannel();
+      messageChannel.port1.onmessage = (event) => {
+        if (event.data.error) {
+          reject(event.data.error);
+        } else {
+          resolve(event.data);
+        }
+      };
+      navigator.serviceWorker.controller.postMessage(message, [messageChannel.port2]);
+    });
   }
 }
