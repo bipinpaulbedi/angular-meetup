@@ -9,6 +9,7 @@ import { GraphInfoService } from "app/graph-info.service";
 import { DynamicWebWorkersComponent } from './dynamic-web-workers/dynamic-web-workers.component';
 import { WebWorkerMultiThreadedComponent } from './web-worker-multi-threaded/web-worker-multi-threaded.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { FibonacciService } from "app/fibonacci.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { BrowserModule } from '@angular/platform-browser';
     HttpModule,
     ChartsModule
   ],
-  providers: [GraphInfoService],
+  providers: [GraphInfoService, FibonacciService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

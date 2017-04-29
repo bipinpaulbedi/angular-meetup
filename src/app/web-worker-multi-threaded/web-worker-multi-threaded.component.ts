@@ -2,23 +2,26 @@ import { Component, OnInit, ViewChild, Injector, OnDestroy } from '@angular/core
 import { BaseChartDirective } from "ng2-charts";
 import { Subscription } from "rxjs/Rx";
 import { GraphInfoService } from "app/graph-info.service";
+import { FibonacciService } from "app/fibonacci.service";
 
 @Component({
   selector: 'app-web-worker-multi-threaded',
   templateUrl: './web-worker-multi-threaded.component.html',
   styleUrls: ['./web-worker-multi-threaded.component.css']
 })
-export class WebWorkerMultiThreadedComponent implements OnInit,OnDestroy {
+export class WebWorkerMultiThreadedComponent implements OnInit, OnDestroy {
   private seriesData: Subscription;
   counter: number = 1;
   public worker: Worker;
   objectValue: string = '';
+  fibOf: number = 1
+  fibVal: number = 1;
 
   ngOnDestroy(): void {
     this.seriesData.unsubscribe();
   }
 
-  constructor(private _injector: Injector, private _graphInfoService: GraphInfoService) {
+  constructor(private _injector: Injector, private _graphInfoService: GraphInfoService, private _fibonacciService: FibonacciService) {
     this.worker = this._injector.get('worker');
   }
 
@@ -85,5 +88,11 @@ export class WebWorkerMultiThreadedComponent implements OnInit,OnDestroy {
   public startCounter(e: any): void {
     console.log('Button Clicked On UI');
     this.worker.postMessage('startCounter');
+  }
+
+  public calculateFib(e: any): void {
+    this._fibonacciService.calculate(this.fibOf).promise.then((fib) => {
+      this.fibVal = fib;
+    });
   }
 }

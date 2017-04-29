@@ -6,4 +6,9 @@
   </div>
   <p>{{objectValue}}</p>
   <button (click)="startCounter($event)">Start Counter</button>
+  <div>
+    <input type="text" [(ngModel)]='fibOf' />
+    <input type="text" [(ngModel)]='fibVal' />
+    <button (click)="calculateFib($event)">Calculate Fibonacci</button>
+  </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GraphInfoService } from "app/graph-info.service";
 import { Subscription } from "rxjs/Rx";
+import { FibonacciService } from "app/fibonacci.service";
 
 @Component({
   selector: 'app-web-worker',
@@ -10,12 +11,14 @@ import { Subscription } from "rxjs/Rx";
 export class WebWorkerComponent implements OnInit, OnDestroy {
   private seriesData: Subscription;
   counter: number = 1;
+  fibOf: number = 1
+  fibVal: number = 1;
 
   ngOnDestroy(): void {
     this.seriesData.unsubscribe();
   }
 
-  constructor(private _graphInfoService: GraphInfoService) { }
+  constructor(private _graphInfoService: GraphInfoService, private _fibonacciService: FibonacciService) { }
 
   ngOnInit() {
     this.seriesData = this._graphInfoService.randomizeObservable(this.lineChartData).subscribe(res => {
@@ -76,5 +79,9 @@ export class WebWorkerComponent implements OnInit, OnDestroy {
     for (var i = 0; i < 10000; i++) {
       console.log(this.counter++)
     }
+  }
+
+  public calculateFib(e: any): void {
+    this.fibVal = this._fibonacciService.calculateWithoutWorker(this.fibOf);
   }
 }
