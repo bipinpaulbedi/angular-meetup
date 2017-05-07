@@ -14,6 +14,7 @@ export class WebWorkerMultiThreadedComponent implements OnInit, OnDestroy {
   counter: number = 1;
   public worker: Worker;
   objectValue: string = '';
+  objectValueFromMessageBus: string = '';
   fibOf: number = 1
   fibVal: number = 1;
 
@@ -27,14 +28,26 @@ export class WebWorkerMultiThreadedComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.worker.onmessage = (e) => {
-      console.log('Inside UI Thread : data received');
+      console.log('Inside UI Thread : data received' + e.data);
+      if (this.HandelMessage(e)) {
+        return;
+      }
       this.objectValue = JSON.stringify(e.data);
-      console.log(e.data);
     }
 
     this.seriesData = this._graphInfoService.randomizeObservable(this.lineChartData).subscribe(res => {
       this.lineChartData = res;
     });
+  }
+
+  private HandelMessage(e): Boolean {
+    if (Array.isArray(e.data)) {
+      if (e.data[0].channel === 'FACTORIAL') {
+        this.objectValueFromMessageBus = JSON.stringify(e.data);
+        return true;
+      }
+    }
+    return false;
   }
 
   // lineChart
@@ -88,6 +101,11 @@ export class WebWorkerMultiThreadedComponent implements OnInit, OnDestroy {
   public startCounter(e: any): void {
     console.log('Button Clicked On UI');
     this.worker.postMessage('startCounter');
+  }
+
+  public startMessageBusInteraction(e: any): void {
+    console.log('Button Clicked On UI to start message bus');
+    this.worker.postMessage({ channel: 'FACTORIAL', message: this.lineChartData });
   }
 
   public calculateFib(e: any): void {

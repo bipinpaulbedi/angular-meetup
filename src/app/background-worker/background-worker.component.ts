@@ -11,12 +11,13 @@ export class BackgroundWorkerComponent implements OnInit, OnDestroy {
   private seriesData: Subscription;
   private receiveMessage: any;
   private counter: number = 1;
-  
+
   ngOnDestroy(): void {
     this.seriesData.unsubscribe();
   }
 
   constructor(private _graphInfoService: GraphInfoService) {
+    
   }
 
   ngOnInit() {

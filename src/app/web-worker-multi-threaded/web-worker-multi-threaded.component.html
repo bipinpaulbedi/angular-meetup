@@ -4,8 +4,12 @@
       [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
       (chartClick)="chartClicked($event)"></canvas>
   </div>
+  <p>Via Normal Post</p>
   <p>{{objectValue}}</p>
   <button (click)="startCounter($event)">Start Counter</button>
+  <p>Message Bus</p>
+  <p>{{objectValueFromMessageBus}}</p>
+  <button (click)="startMessageBusInteraction($event)">Start Message Bus</button>
   <div>
     <input type="text" [(ngModel)]='fibOf' />
     <input type="text" [(ngModel)]='fibVal' />
