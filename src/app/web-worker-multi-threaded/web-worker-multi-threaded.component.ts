@@ -15,8 +15,8 @@ export class WebWorkerMultiThreadedComponent implements OnInit, OnDestroy {
   public worker: Worker;
   objectValue: string = '';
   objectValueFromMessageBus: string = '';
-  fibOf: number = 1
-  fibVal: number = 1;
+  fibOf: number = 1;
+  fibVal: Array<number> = new Array<number>(5);
 
   ngOnDestroy(): void {
     this.seriesData.unsubscribe();
@@ -109,8 +109,11 @@ export class WebWorkerMultiThreadedComponent implements OnInit, OnDestroy {
   }
 
   public calculateFib(e: any): void {
-    this._fibonacciService.calculate(this.fibOf).promise.then((fib) => {
-      this.fibVal = fib;
-    });
+    for (let i = 0; i <= 5; i++) {
+      this._fibonacciService.calculate(this.fibOf + i).promise.then((fib) => {
+        this.fibVal.push(fib);
+        console.log(this.fibVal);
+      });
+    }
   }
 }

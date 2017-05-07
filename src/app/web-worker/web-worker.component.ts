@@ -11,8 +11,8 @@ import { FibonacciService } from "app/fibonacci.service";
 export class WebWorkerComponent implements OnInit, OnDestroy {
   private seriesData: Subscription;
   counter: number = 1;
-  fibOf: number = 1
-  fibVal: number = 1;
+  fibOf: number = 1;
+  fibVal: Array<number> = new Array<number>(5);
 
   ngOnDestroy(): void {
     this.seriesData.unsubscribe();
@@ -82,6 +82,9 @@ export class WebWorkerComponent implements OnInit, OnDestroy {
   }
 
   public calculateFib(e: any): void {
-    this.fibVal = this._fibonacciService.calculateWithoutWorker(this.fibOf);
+    for (let i = 0; i <= 5; i++) {
+      this.fibVal.push(this._fibonacciService.calculateWithoutWorker(this.fibOf + i));
+      console.log(this.fibVal);
+    }
   }
 }
