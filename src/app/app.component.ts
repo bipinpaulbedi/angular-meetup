@@ -13,12 +13,14 @@ export class AppComponent {
   title = 'Angular Rocks!!!';
   graphs = 1;
   generateDistinct = false;
-  backgroudWorkers: Array<Worker> = []
+  backgroudWorkers: Array<Worker> = [];
+  serviceWorkerEnabled = false;
+
   constructor() {
     this.backGroundWorker = new Worker('webworker.bundle.js');
     this.backgroudWorkers.push(this.backGroundWorker);
 
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && this.serviceWorkerEnabled) {
       navigator.serviceWorker.register('serviceWorker.bundle.js');
     }
   }
